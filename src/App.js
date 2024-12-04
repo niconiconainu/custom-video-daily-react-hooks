@@ -188,7 +188,7 @@ export default function App() {
       return (
         <DailyProvider callObject={callObject}>
           {showHairCheck ? (
-            // No API errors? Let's check our hair then.
+            // No API errors? Let's check our hair then.プレビュー画面
             <HairCheck joinCall={joinCall} cancelCall={startLeavingCall} />
           ) : (
             // No API errors, we passed the hair check, and we've joined the call? Then show the call.
@@ -202,7 +202,7 @@ export default function App() {
       );
     }
 
-    // The default view is the HomeScreen, from where we start the demo.
+    // The default view is the HomeScreen, from where we start the demo.プレビューに入る前の画面
     return <HomeScreen createCall={createCall} startHairCheck={startHairCheck} />;
   };
 
