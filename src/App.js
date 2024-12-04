@@ -55,7 +55,7 @@ export default function App() {
     setCallObject(newCallObject);
     setAppState(STATE_HAIRCHECK);
     await newCallObject.preAuth({ url }); // add a meeting token here if your room is private
-    await newCallObject.startCamera();
+    await newCallObject.startCamera(); // カメラの起動
   }, []);
 
   /**
@@ -63,6 +63,7 @@ export default function App() {
    * We'll pass the username entered during Haircheck to .join().
    */
   const joinCall = useCallback((userName) => {
+    // callObjectにstateで定義したUserNameを加える。シングルトン的管理
     callObject.join({ url: roomUrl, userName });
   }, [callObject, roomUrl]);
 
@@ -72,6 +73,7 @@ export default function App() {
   const startLeavingCall = useCallback(() => {
     if (!callObject) return;
     // If we're in the error state, we've already "left", so just clean up
+    // leave()メソッドのほうが通常はよい？
     if (appState === STATE_ERROR) {
       callObject.destroy().then(() => {
         setRoomUrl(null);
@@ -118,7 +120,7 @@ export default function App() {
     if (!callObject) return;
 
     const events = ['joined-meeting', 'left-meeting', 'error', 'camera-error'];
-
+    // 通話の状態変化を監視
     function handleNewMeetingState() {
       switch (callObject.meetingState()) {
         case 'joined-meeting':

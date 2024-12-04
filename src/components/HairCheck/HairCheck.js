@@ -14,6 +14,7 @@ import './HairCheck.css';
 export default function HairCheck({ joinCall, cancelCall }) {
   const localSessionId = useLocalSessionId();
   const initialUsername = useParticipantProperty(localSessionId, 'user_name');
+  // デバイス情報の取得
   const { currentCam, currentMic, currentSpeaker, microphones, speakers, cameras, setMicrophone, setCamera, setSpeaker } = useDevices();
   const callObject = useDaily();
   const [username, setUsername] = useState(initialUsername);
