@@ -16,6 +16,7 @@ export default function Call() {
 
   /* We can use the useDailyEvent() hook to listen for daily-js events. Here's a full list
    * of all events: https://docs.daily.co/reference/daily-js/events */
+  //  イベントリスナーuseDailyEvent
   useDailyEvent(
     'camera-error',
     useCallback(() => {
@@ -25,7 +26,7 @@ export default function Call() {
 
   /* This is for displaying remote participants: this includes other humans, but also screen shares. スクリーンシェアもIdあればOK */
   const { screens } = useScreenShare();
-  // 基本的に、リモート参加者を表示するために必要なのは、その ID のみ
+  // 基本的に、リモート参加者を表示するために必要なのは、その ID のみ。リモート参加者 ID の配列を取得するためのfilter
   const remoteParticipantIds = useParticipantIds({ filter: 'remote' });
 
   /* This is for displaying our self-view. */

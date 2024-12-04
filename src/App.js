@@ -187,6 +187,7 @@ export default function App() {
     if (showHairCheck || showCall) {
       return (
         <DailyProvider callObject={callObject}>
+          {/* WebRTC オブジェクトとか一番重要なやつ */}
           {showHairCheck ? (
             // No API errors? Let's check our hair then.プレビュー画面
             <HairCheck joinCall={joinCall} cancelCall={startLeavingCall} />
