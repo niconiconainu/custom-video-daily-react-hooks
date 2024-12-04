@@ -57,6 +57,7 @@ export default function HairCheck({ joinCall, cancelCall }) {
     <UserMediaError />
   ) : (
     <form className="hair-check" onSubmit={handleJoin}>
+      {/* 入る前のハードウェア */}
       <h1>Setup your hardware</h1>
       {/* Video preview */}
       {localSessionId && <DailyVideo sessionId={localSessionId} mirror />}

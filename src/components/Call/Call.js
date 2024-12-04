@@ -23,8 +23,9 @@ export default function Call() {
     }, []),
   );
 
-  /* This is for displaying remote participants: this includes other humans, but also screen shares. */
+  /* This is for displaying remote participants: this includes other humans, but also screen shares. スクリーンシェアもIdあればOK */
   const { screens } = useScreenShare();
+  // 基本的に、リモート参加者を表示するために必要なのは、その ID のみ
   const remoteParticipantIds = useParticipantIds({ filter: 'remote' });
 
   /* This is for displaying our self-view. */
