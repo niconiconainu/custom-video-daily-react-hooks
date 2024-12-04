@@ -103,6 +103,7 @@ export default function Tray({ leaveCall }) {
             {showMeetingInformation ? 'Hide info' : 'Show info'}
           </button>
           <button onClick={toggleChat} type="button">
+            {/* 通知用のアイコン切り替え */}
             {newChatMessage ? <ChatHighlighted /> : <ChatIcon />}
             {showChat ? 'Hide chat' : 'Show chat'}
           </button>

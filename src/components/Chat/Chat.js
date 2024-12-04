@@ -11,6 +11,7 @@ export default function Chat({ showChat, toggleChat }) {
   const username = useParticipantProperty(localSessionId, 'user_name');
 
   const sendAppMessage = useAppMessage({
+    // "app-message"イベントが発生すると、onAppMessageフック内のコールバックが実行される
     onAppMessage: useCallback(
       (ev) =>
         setMessages((existingMessages) => [
@@ -24,6 +25,7 @@ export default function Chat({ showChat, toggleChat }) {
     ),
   });
 
+  // 他の参加者へのブロードキャストを呼び出し、送信者のみに対して直接呼び出す
   const sendMessage = useCallback(
     (message) => {
       /* Send the message to all participants in the chat - this does not include ourselves!
@@ -34,11 +36,14 @@ export default function Chat({ showChat, toggleChat }) {
           msg: message,
           name: username || 'Guest',
         },
+        // 送信先のオブジェクトの 2 番目のエントリはsendAppMessage()文字列 です’*’。これは、会議のすべての参加者にメッセージをブロードキャストすること
+        // メッセージの送信者に配信されない
         '*',
       );
 
       /* Since we don't receive our own messages, we will set our message in the messages array.
        * This way _we_ can also see what we wrote.
+      // 既存のmessageを呼び出して手動で追加
        */
       setMessages([
         ...messages,
